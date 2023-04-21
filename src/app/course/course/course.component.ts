@@ -12,6 +12,9 @@ import { ActorService } from '../actor.service';
 export class CourseComponent implements OnInit {
   public actores: Array<Actor> = [];
 
+  actoresPorPagina = 8;
+  paginaActual = 1;
+
   constructor(private actorService: ActorService) {
   }
 
@@ -20,6 +23,50 @@ export class CourseComponent implements OnInit {
       this.actores = actors;
     });
   }
+
+  get totalPages() {
+    return Math.ceil(this.actores.length / this.actoresPorPagina);
+  }
+
+  get actoresPaginados() {
+    const startIndex = (this.paginaActual - 1) * this.actoresPorPagina;
+    return this.actores.slice(startIndex, startIndex + this.actoresPorPagina);
+  }
+
+  get pages() {
+    const pages: number[] = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  setCurrentPage(page: number) {
+    this.paginaActual = page;
+  }
+
+  previousPage() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+    }
+  }
+
+  nextPage() {
+    if (this.paginaActual < this.totalPages) {
+      this.paginaActual++;
+    }
+  }
+
+  cambiarPagina(pagina: number) {
+    this.paginaActual = pagina;
+  }
+
+  obtenerActoresPaginados(): any[] {
+    const indiceInicial = (this.paginaActual - 1) * this.actoresPorPagina;
+    const indiceFinal = indiceInicial + this.actoresPorPagina;
+    return this.actores.slice(indiceInicial, indiceFinal);
+  }
+
 
   ngOnInit(): void {
     this.getActorsList();

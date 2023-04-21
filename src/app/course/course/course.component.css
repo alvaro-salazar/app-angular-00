@@ -1,0 +1,42 @@
+.custom-card {
+  max-width: 200px; /* Establece el ancho máximo que deseas */
+  max-height: 300px; /* Establece el ancho máximo que deseas */
+}
+
+.max-width-900 {
+  max-width: 900px;
+  min-width: 700px;
+}
+
+.texto-largo {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.texto-largo:hover {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.texto-footer {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1000;
+  color: lightgray;
+  cursor: pointer;
+}
+
+.texto-footer:hover {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.paginador {
+  cursor: pointer;
+}
